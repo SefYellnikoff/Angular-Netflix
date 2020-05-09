@@ -11,13 +11,13 @@
             <a routerLink="/films">Movies</a>
             <a routerLink="/actors">Actors</a>
             <a routerLink="/genres">Generi</a>
-            <span *!ngIf="userService.loggedUser">
+            <!--<span *!ngIf="userService.loggedUser">
                 <button (click)="userService.login()">Login <i class="fas fa-bell sub-nav-logo"></i></button>
             </span>
             <span *ngIf="userService.loggedUser">
                 Welcome back bithciiiis {{ userService.loggedUser.firstname }}
                 <button (click)="userService.logout()">Logout Netflix</button>
-            </span>
+            </span>-->
             <!--non si vede, sistemare-->
 
         </nav>
@@ -61,7 +61,7 @@
     <!--SISTEMARE USERS-->
 
 
-    <div *!ngIf="userService.loggedUser">
+    <!-- <div *!ngIf="userService.loggedUser">
         <button (click)="userService.login()">Netflix Login</button>
     </div>
     <div *ngIf="userService.loggedUser">
@@ -70,7 +70,7 @@
             {{ userService.loggedUser.firstname }}
             <button (click)="userService.logout()">Logout Netflix</button>
         </span>
-    </div>
+    </div>-->
 
     <!-- LINKS -->
     <section class="link">

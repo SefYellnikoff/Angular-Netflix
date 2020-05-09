@@ -67,7 +67,9 @@
     <div *ngIf="userService.loggedUser">
         <span>
             Welcome back bithciiiis
-            {{ userService.loggedUser.firstname }}<button (click)="userService.logout()">Logout Netflix</button></span>
+            {{ userService.loggedUser.firstname }}
+            <button (click)="userService.logout()">Logout Netflix</button>
+        </span>
     </div>
 
     <!-- LINKS -->

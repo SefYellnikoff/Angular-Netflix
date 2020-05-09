@@ -13,4 +13,5 @@ export interface Film {
     cast: Actor[];
     genres:Genre[];
     tags: string;
+    coverUrl: string;
 }

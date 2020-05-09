@@ -1,0 +1,91 @@
+<!--LOGO-->
+
+<div class="netflixLogo fixed-top ">
+    <a id="logo" href="#home"><img src="https://github.com/carlosavilae/Netflix-Clone/blob/master/img/logo.PNG?raw=true" alt="Logo Image"></a>
+</div>
+<!--LOGO-->
+
+<!-- SISTEMARE NAVBAR-->
+<div class="container">
+    <nav style="margin-top:30px;" class=" main-nav navbar fixed-top  nav navbar-expand-lg navbar-light bg-black">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+            <ul class=" main-nav navbar-nav mr-auto mt-2 mt-lg-0 ">
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/dashboard">Dashboard</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/films/add">Add Movies</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/films/edit">Edit Movies</a>
+                </li>
+                <a><i class="fas fa-search sub-nav-logo"></i></a>
+                <a><input style="border-radius: 200px;" type="text" aria-describedby="inputGroup-sizing-default"></a>
+            </ul>
+        </div>
+    </nav>
+</div>
+<!--NAVBAR-->
+
+
+
+<!--ROW A CASO, GIUSTO PERCHE NE HO POCHE-->
+<div class="container">
+    <div class=" search row">
+        <div class="col-lg-6 d-flex align-items-stretch  ">
+
+            <span>MOVIES LIST</span>
+
+        </div>
+
+    </div>
+</div>
+<!--ROW A CASO, GIUSTO PERCHE NE HO POCHE-->
+
+
+
+
+<div class="container">
+    <div *ngFor="let a of films" (click)="a.showMore = !a.showMore" style="margin-bottom: 30px;">
+        <div class="row">
+            <div class="col-lg-6 d-flex align-items-stretch ">
+                <img class="responsive" [src]="a.coverUrl ">
+            </div>
+            <div class="col-lg-6 d-flex align-items-stretch">
+                <div class="row ">
+                    <div class="col-12 ">
+                        <div> {{ a.title }}</div>
+                        <div>Voto del pubblico: {{ a.stars }}</div>
+                        <div>Durata del film: {{ a.duration }}</div>
+                        <div class="row ">
+                            <div class="col-12 " *ngIf="a.showMore ">
+                                <!--<div>Attori: {{ getCastList(a.cast) }}</div>-->
+                                <div> Anno: {{ a.releaseYear }}</div>
+                                <div>Genere: {{ getGenreList(a.genres) }}</div>
+                                <div>Tags: {{ a.tags }}</div>
+                                <div>Attori: {{ getCastList(a.cast) }}</div>
+                                <div>
+                                    <button type="button" class="btn btn-danger" (click)="selectThisFilm(a)" routerLink="/films/edit">Modifica</button>
+                                </div>
+                                <div class="row ">
+                                    <div class="col-12 ">
+                                        <div>
+                                            <!--<img [src]="getCastList(a.cast.imgUrl)">-->
+                                            <!--sistemare-->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

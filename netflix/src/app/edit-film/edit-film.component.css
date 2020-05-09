@@ -1,0 +1,32 @@
+.main-nav {
+    grid-area: mn;
+    padding: 0 30px 0 20px;
+}
+
+.main-nav a {
+    color: white;
+    text-decoration: none;
+    margin: 5px;
+}
+
+.main-nav a:hover {
+    color: grey;
+}
+
+.margin_left {
+    margin-left: 10px;
+}
+
+.margin_right {
+    margin-right: 10px;
+}
+
+.margin_top {
+    margin-top: 90px;
+}
+
+.radius {
+    color: whitesmoke;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: black;
+}

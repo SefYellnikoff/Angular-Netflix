@@ -1,0 +1,93 @@
+<div class="container">
+    <nav class="navbar  main-nav navbar-expand-lg navbar-light bg-black">
+        <a class="navbar-brand" href="#">
+            <img src="https://cdn.vox-cdn.com/thumbor/AwKSiDyDnwy_qoVdLPyoRPUPo00=/39x0:3111x2048/1400x1400/filters:focal(39x0:3111x2048):format(png)/cdn.vox-cdn.com/uploads/chorus_image/image/49901753/netflixlogo.0.0.png" width="40" height="30" alt="">
+        </a>
+        <a routerLink="/films">Movies</a>
+        <a routerLink="/dashboard">Dahboard</a>
+    </nav>
+
+</div>
+
+<div *ngIf="filmService.selectedFilm" class="container">
+
+    <div class="row margin_top">
+        <div class="col-md-auto">
+            <label for="title">
+                <!--Primo campo di testo-->
+                <h4>Titolo Film</h4>
+            </label><i class="fas fa-pencil-alt margin_left"></i>
+            <input id="name" type="text" class="form-control radius" placeholder="titolo" [(ngModel)]="filmService.selectedFilm.title">
+            <div hidden id="alertName" class="alert alert-danger radius" role="alert">
+                Scrivi il titolo!<i class="fas fa-poo"></i>
+            </div> <br>
+            <!--Secondo campo di testo-->
+        </div>
+        <div class="col-md-auto">
+            <label for="description">
+                <h4>Descrizione</h4>
+            </label><i class="fas fa-pencil-alt margin_left"></i>
+            <input id="description" type="text" class="form-control radius" placeholder="description" [(ngModel)]="filmService.selectedFilm.description">
+            <div hidden id="alertLastName" class="alert alert-danger radius" role="alert">
+                Scrivi descrizione<i class="fas fa-poo"></i>
+            </div>
+        </div>
+        <!--terzo campo di testo-->
+        <div class="col-md-auto">
+            <label for="director">
+                <h4>Regista</h4>
+            </label><i class="fas fa-pencil-alt margin_left"></i>
+            <input id="director" type="text" class="form-control radius" placeholder="director" [(ngModel)]="filmService.selectedFilm.director">
+            <div hidden id=" alertLastName " class=" alert alert-danger radius " role=" alert ">
+                Scrivi il regista<i class=" fas fa-poo "></i>
+            </div>
+        </div>
+
+        <!--quarto campo di testo-->
+        <div class="col-md-auto">
+            <label for="duration">
+                <h4>Durata</h4>
+            </label><i class="fas fa-pencil-alt margin_left"></i>
+            <input id="duration" type="number" class="form-control radius" placeholder="duration" [(ngModel)]=" filmService.selectedFilm.duration ">
+            <div hidden id="alertDuration " class=" alert alert-danger radius " role=" alert ">
+                Scrivi la durata del film<i class=" fas fa-poo "></i>
+            </div>
+        </div>
+        <!--quinto campo di testo-->
+        <div class="col-md-auto">
+            <label for="duration">
+                <h4>Anno di uscita</h4>
+            </label><i class="fas fa-pencil-alt margin_left"></i>
+            <input id="duration" type="text class=" form-control radius " placeholder="anno " [(ngModel)]="filmService.selectedFilm.releaseYear ">
+            <div hidden id=" alertAnno " class=" alert alert-danger radius " role=" alert ">
+                Scrivi anno di uscita<i class=" fas fa-poo "></i>
+            </div>
+        </div>
+    </div>
+    <!--select-->
+    <div class=" margin_top row ">
+        <div class="col-md-auto ">
+            <label for="select ">
+                <h4>Attori</h4>
+            </label>
+            <select id="select " class="custom-select radius " [(ngModel)]=" filmService.selectedFilm.cast " multiple>
+                <option [value]=" actor " *ngFor=" let actor of actors ">{{ actor.firstname }} {{ actor.lastname }}
+                </option>
+            </select>
+        </div>
+        <div class="col-md-auto ">
+            <label for="select ">
+                <h4>Generi</h4>
+            </label>
+            <select id="select " class="custom-select radius " [(ngModel)]=" filmService.selectedFilm.genres " multiple>
+                <option [value]=" genre " *ngFor=" let genre of genres ">{{ genre.name }}</option>
+            </select>
+        </div>
+
+    </div>
+    <div class="margin_top row ">
+        <div class="col-12 ">
+            <button class="btn btn-danger " type="button " (click)=" filmService.editFilm() " routerLink=" /films ">Salva film</button>
+        </div>
+    </div>
+</div>

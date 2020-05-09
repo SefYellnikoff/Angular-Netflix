@@ -1,0 +1,47 @@
+.netflixLogo {
+    grid-area: nt;
+    object-fit: cover;
+    width: 100px;
+    max-height: 100%;
+    padding-left: 30px;
+    padding-top: 0px;
+}
+
+.netflixLogo img {
+    height: 35px;
+}
+
+#logo {
+    color: #E50914;
+    margin: 0;
+    padding: 0;
+}
+
+.main-nav {
+    grid-area: mn;
+    padding: 0 30px 0 20px;
+}
+
+.main-nav a {
+    color: white;
+    text-decoration: none;
+    margin: 5px;
+}
+
+.main-nav a:hover {
+    color: grey;
+}
+
+.search {
+    margin-top: 10%;
+    text-align: center;
+}
+
+.container {
+    background-color: black;
+}
+
+.responsive {
+    width: 70%;
+    height: auto;
+}

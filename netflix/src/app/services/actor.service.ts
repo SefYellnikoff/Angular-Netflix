@@ -7,17 +7,20 @@ const ACTORS: Actor[] = [
   {
     id: 23,
     firstname: 'George',
-    lastname: 'Clooney'
+    lastname: 'Clooney',
+    imgActor: 'https://pbs.twimg.com/profile_images/704366711739387904/dBlzfG_S.jpg'
   },
   {
     id: 33,
     firstname: 'Jim',
-    lastname: 'Carry'
+    lastname: 'Carry',
+    imgActor: ''
   },
   {
     id: 63,
     firstname: 'Quentin',
-    lastname: 'Tarantino'
+    lastname: 'Tarantino',
+    imgActor: ''
   },
 ]
 
@@ -25,30 +28,35 @@ const ACTORS: Actor[] = [
   providedIn: 'root'
 })
 export class ActorService {
-
-  selectedActor: Actor;
-  newActor: Actor;
   actors: Actor[];
-
-
-  constructor(private localStorage: LocalStorageService) {}
-
-  getActors(): Observable<Actor[]> {
+  selectedActor: Actor;
+  newActor: Actor = {
+    firstname: '',
+    lastname: '',
+    imgActor: ''
+  };
+  constructor(private localStorage: LocalStorageService) { }
+  
+  getActors(): Actor[] {
     this.actors = this.localStorage.retrieve('actors') || ACTORS;
-    return of(this.actors);
+    return this.actors;
   }
 
-  addActor(actor: Actor) {
-    this.actors.push(actor);
-    this.saveActorInLocalStorage();
-  }
 
-  editActor() {
-    this.selectedActor = null;
-    this.saveActorInLocalStorage();
-  }
-
-  saveActorInLocalStorage() {
+  addActor(): void {
+    this.actors.push(this.newActor);
     this.localStorage.store('actors', this.actors);
+    this.newActor = {
+      firstname: '',
+      lastname: '',
+      imgActor: ''
+    };
   }
+
+  editActor(): void {
+    this.localStorage.store('actors', this.actors);
+    this.selectedActor = null;
+  }
+
+
 }

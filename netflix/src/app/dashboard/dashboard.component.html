@@ -1,0 +1,99 @@
+<div class="wrapper">
+
+    <!-- HEADER -->
+    <header>
+        <div class="netflixLogo">
+            <a id="logo" href="#home"><img src="https://github.com/carlosavilae/Netflix-Clone/blob/master/img/logo.PNG?raw=true" alt="Logo Image"></a>
+        </div>
+        <nav class="main-nav">
+            <a href="#home">Home</a>
+            <a href="#tvShows">TV Shows</a>
+            <a routerLink="/films">Movies</a>
+            <a routerLink="/actors">Actors</a>
+            <a routerLink="/genres">Generi</a>
+            <span *!ngIf="userService.loggedUser">
+                <button (click)="userService.login()">Login <i class="fas fa-bell sub-nav-logo"></i></button>
+            </span>
+            <span *ngIf="userService.loggedUser">
+                Welcome back bithciiiis {{ userService.loggedUser.firstname }}
+                <button (click)="userService.logout()">Logout Netflix</button>
+            </span>
+            <!--non si vede, sistemare-->
+
+        </nav>
+        <nav class="sub-nav">
+            <a href="#"><i class="fas fa-search sub-nav-logo"></i></a>
+            <a href="#"><i class="fas fa-bell sub-nav-logo"></i></a>
+            <a href="#">Netflix</a>
+        </nav>
+    </header>
+    <!-- END OF HEADER -->
+
+    <!-- MAIN CONTAINER -->
+    <section class="main-container">
+        <div class="location" id="home">
+            <h1 id="home">Ultimi 4 films su Netflix:</h1>
+            <div class="box">
+                <div class="a" *ngFor="let film of lastFilms">
+                    <img [src]="film.coverUrl">
+                    <!-- <h4>{{ film.title }}</h4>
+                    <h4>{{ film.releaseYear }}</h4>-->
+                </div>
+            </div>
+        </div>
+
+
+        <h1 id="myList">Ultimi 3 films su Netflix:</h1>
+        <div class="box">
+            <div class="a" *ngFor="let film of bestFilms">
+                <img class="img" [src]="film.coverUrl">
+                <div>
+                    <span>{{ film.title }}</span>
+                </div>
+                <div>
+                    stars:
+                    <span>{{ film.stars }}</span>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- END OF MAIN CONTAINER -->
+    <!--SISTEMARE USERS-->
+
+
+    <!-- <div *!ngIf="userService.loggedUser">
+        <button (click)="userService.login()">Netflix Login</button>
+    </div>
+    <div *ngIf="userService.loggedUser">
+        <span>
+        Welcome back bithciiiis
+     {{ userService.loggedUser.firstname }}<button (click)="userService.logout()">Logout Netflix</button></span>
+    </div>-->
+
+    <!-- LINKS -->
+    <section class="link">
+        <div class="logos">
+            <a href="#"><i class="fab fa-facebook-square fa-2x logo"></i></a>
+            <a href="#"><i class="fab fa-instagram fa-2x logo"></i></a>
+            <a href="#"><i class="fab fa-twitter fa-2x logo"></i></a>
+            <a href="#"><i class="fab fa-youtube fa-2x logo"></i></a>
+        </div>
+        <div class="sub-links">
+            <ul>
+                <li><a href="#">Audio and Subtitles</a></li>
+                <li><a href="#">Audio Description</a></li>
+                <li><a href="#">Help Center</a></li>
+                <li><a href="#">Gift Cards</a></li>
+                <li><a href="#">Media Center</a></li>
+                <li><a href="#">Investor Relations</a></li>
+                <li><a href="#">Jobs</a></li>
+                <li><a href="#">Terms of Use</a></li>
+                <li><a href="#">Privacy</a></li>
+                <li><a href="#">Legal Notices</a></li>
+                <li><a href="#">Corporate Information</a></li>
+                <li><a href="#">Contact Us</a></li>
+            </ul>
+        </div>
+    </section>
+
+</div>

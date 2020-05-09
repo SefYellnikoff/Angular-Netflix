@@ -52,28 +52,31 @@ const GENRES: Genre[] = [
 export class GenreService {
 
   selectedGenre: Genre;
-  newGenre: Genre;
   genres: Genre[];
+  newGenre: Genre = {
+    name: ''
+  };
 
 
   constructor(private localStorage: LocalStorageService) { }
 
-  getGenres(): Observable<Genre[]> {
+  getGenres(): Genre[] {
     this.genres = this.localStorage.retrieve('genres') || GENRES;
-    return of(this.genres);
+    return this.genres;
   }
 
-  addGenre(genre: Genre) {
-    this.genres.push(genre);
-    this.saveGenreInLocalStorage();
-  }
-
-  editGenre() {
-    this.selectedGenre = null;
-    this.saveGenreInLocalStorage();
-  }
-
-  saveGenreInLocalStorage() {
+    addGenre(): void {
+    this.genres.push(this.newGenre);
     this.localStorage.store('genres', this.genres);
+    this.newGenre = {
+      name: ''
+    };
   }
+
+
+   editGenre(): void {
+    this.localStorage.store('genres', this.genres);
+    this.selectedGenre = null;
+  }
+
 }

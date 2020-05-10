@@ -14,8 +14,11 @@ export class FilmsComponent implements OnInit {
 
   titleFilm = 'Sono il film component';
   films: Film[];
-  constructor(private filmService: FilmService) { }
   actors: Actor[];
+  searchText = '';
+
+
+  constructor(private filmService: FilmService) { }
 
   ngOnInit() {
     this.films = this.filmService.getFilms();

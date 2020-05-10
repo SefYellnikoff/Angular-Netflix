@@ -7,8 +7,8 @@
         <a routerLink="/dashboard">Dahboard</a>
         <a routerLink="/films">Movies</a>
         <a routerLink="/films/add">Add Movies</a>
-        <a><input placeholder="search" type="text" aria-describedby="inputGroup-sizing-default"></a>
-        <!--<button type="button" class="button"><i class="fas fa-search"></i></button>-->
+        <a><input placeholder="search" [(ngModel)]="searchText" autocomplete="off" type="text" aria-describedby="inputGroup-sizing-default"></a>
+
 
     </nav>
 
@@ -16,7 +16,7 @@
 <!--NAVBAR-->
 
 <div style="margin-top:10%;" class="container">
-    <div *ngFor="let a of films" (click)="a.showMore = !a.showMore" style="margin-bottom: 30px;">
+    <div *ngFor="let a of films | searchFilm:searchText" (click)="a.showMore = !a.showMore" style="margin-bottom: 30px;">
         <div class="row">
             <div class="col-lg-6 d-flex align-items-stretch ">
                 <img class="responsive" [src]="a.coverUrl ">

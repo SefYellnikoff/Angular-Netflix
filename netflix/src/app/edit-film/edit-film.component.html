@@ -58,7 +58,8 @@
             <label for="duration">
                 <h4>Anno di uscita</h4>
             </label><i class="fas fa-pencil-alt margin_left"></i>
-            <input id="duration" type="text class=" form-control radius " placeholder="anno " [(ngModel)]="filmService.selectedFilm.releaseYear ">
+            <input id="anno" type="date" class="form-control radius" placeholder="anno" [(ngModel)]=" filmService.selectedFilm.releaseYear ">
+
             <div hidden id=" alertAnno " class=" alert alert-danger radius " role=" alert ">
                 Scrivi anno di uscita<i class=" fas fa-poo "></i>
             </div>

@@ -1,3 +1,4 @@
+<!--navbar-->
 <div class="container">
     <nav class="navbar fixed-top main-nav navbar-expand-lg navbar-light bg-black">
         <a class="navbar-brand" href="#">
@@ -8,8 +9,10 @@
     </nav>
 
 </div>
+<!--navbar-->
 
-<div class="containerz margin-top">
+<!--logo magico-->
+<div class="containerz margin-logo">
     <div class="logo">
         <div class="netflix">
             <span></span>
@@ -19,106 +22,60 @@
         <h3>Netflix</h3>
     </div>
 </div>
+<!--logo magico-->
 
 
 <div class="container margin-top">
 
     <div class="row margin_top">
         <div class="col-md-auto">
-            <label for="title">
-                <!--Primo campo di testo-->
-                <h4 >Titolo Film</h4>
-            </label><i class="fas fa-pencil-alt margin_left"></i>
-            <input class="form-control radius" type="text" placeholder="Inserisci titolo" [(ngModel)]="filmService.newFilm.title">
-            <div hidden id="alertName" class="alert alert-danger radius" role="alert">
-                Scrivi il titolo!<i class="fas fa-poo"></i>
-            </div> <br>
-            <!--Secondo campo di testo-->
+            <i class="fas fa-pencil-alt margin_left"></i>
+            <input type="text" placeholder="titolo" [(ngModel)]="filmService.newFilm.title">
         </div>
         <div class="col-md-auto">
-            <label for="description">
-                <h4>Descrizione</h4>
-            </label><i class="fas fa-pencil-alt margin_left"></i>
-
-            <input class="form-control radius" type="text" placeholder="Inserisci regista" [(ngModel)]="filmService.newFilm.description">
-            <div hidden id="alertLastName" class="alert alert-danger radius" role="alert">
-                Scrivi descrizione<i class="fas fa-poo"></i>
-            </div>
-        </div>
-        <!--terzo campo di testo-->
-        <div class="col-md-auto">
-            <label for="director">
-                <h4>Regista</h4>
-            </label><i class="fas fa-pencil-alt margin_left"></i>
-            <input id="director" type="text" class="form-control radius" placeholder="director" [(ngModel)]="filmService.newFilm.director">
-            <div hidden id=" alertLastName " class=" alert alert-danger radius " role=" alert ">
-                Scrivi il regista<i class=" fas fa-poo "></i>
-            </div>
+            <i class="fas fa-pencil-alt margin_left"></i>
+            <input type="text" placeholder="description" [(ngModel)]="filmService.newFilm.description">
         </div>
 
-        <!--quarto campo di testo-->
         <div class="col-md-auto">
-            <label for="duration">
-                <h4>Durata</h4>
-            </label><i class="fas fa-pencil-alt margin_left"></i>
-            <input class="form-control radius" type="number" placeholder="Inserisci durata" [(ngModel)]="filmService.newFilm.duration">
-            <div hidden id="alertDuration " class=" alert alert-danger radius " role=" alert ">
-                Scrivi la durata del film<i class=" fas fa-poo "></i>
-            </div>
+            <i class="fas fa-pencil-alt margin_left"></i>
+            <input type="text" placeholder="director" [(ngModel)]="filmService.newFilm.director">
         </div>
-        <!--quinto campo di testo-->
-        <div class="col-md-auto">
-            <label for="duration">
-                <h4>Anno di uscita</h4>
-            </label><i class="fas fa-pencil-alt margin_left"></i>
-            <input class="form-control radius" type="date" placeholder="Inserisci anno di uscita" [(ngModel)]="filmService.newFilm.releaseYear">
-            <div hidden id=" alertAnno " class=" alert alert-danger radius " role=" alert ">
-                Scrivi anno di uscita<i class=" fas fa-poo "></i>
-            </div>
-        </div>
-        <div class="col-md-auto">
-            <label for="tags">
-                <h4>TAGS</h4>
-            </label><i class="fas fa-pencil-alt margin_left"></i>
-            <input class="form-control radius" type="text" placeholder="Inserisci tags" [(ngModel)]="filmService.newFilm.tags">
 
-            <div hidden id=" alertAnno " class=" alert alert-danger radius " role=" alert ">
-                Inserisci alcuni Tags<i class=" fas fa-poo "></i>
-            </div>
+
+        <div class="col-md-auto">
+            <i class="fas fa-pencil-alt margin_left"></i>
+            <input type="time" value="22:00" placeholder="duration" [(ngModel)]=" filmService.newFilm.duration ">
+        </div>
+
+        <div class="col-md-auto">
+            <i class="fas fa-pencil-alt margin_left"></i>
+            <input type="date" placeholder="anno" [(ngModel)]=" filmService.newFilm.releaseYear ">
         </div>
     </div>
     <!--select-->
-    <div class="  row">
-        <div class="col-md-auto">
-            <label for="select">
-                <h4>Attori</h4>
-            </label>
-            <select id="select" class="custom-select radius" [(ngModel)]="filmService.newFilm.cast" multiple>
-                <option [value]=" actor " *ngFor=" let actor of actors ">
-                    {{ actor.firstname }} {{ actor.lastname }}
-                </option>
+    <div class=" margin_top row ">
+        <div class="col-md-auto ">
+            <select class="custom-select" [(ngModel)]=" filmService.newFilm.cast " multiple>
+                <option [value]="actor" *ngFor=" let actor of actors ">{{ actor.firstname }} {{ actor.lastname }} </option>
             </select>
         </div>
-        <div class="col-md-auto">
-            <label for="select">
-                <h4>Generi</h4>
-            </label>
-            <select id="select" class="custom-select radius" [(ngModel)]="filmService.newFilm.genres" multiple>
-                <option [value]=" genre " *ngFor=" let genre of genres ">{{ genre.name }}</option>
+        <div class="col-md-auto ">
+            <select class="custom-select" [(ngModel)]=" filmService.newFilm.genres " multiple>
+                <option [value]="genre" *ngFor=" let genre of genres ">{{ genre.name }}</option>
             </select>
-
-        </div>
-
-    </div>
-    <div class="margin-top row">
-        <div class="col-12">
-            <button (click)="filmService.addFilm()" class="btn btn-danger" type="button">
-                Save Movies
-           </button>
-
         </div>
     </div>
+    <div class="margin_top row ">
+        <div class="col-12 ">
+            <button class="button" type="button" (click)=" filmService.addFilm() " routerLink="/films">Aggiungi film</button>
+        </div>
+    </div>
+
 </div>
+<!--fine select-->
+
+
 
 
 

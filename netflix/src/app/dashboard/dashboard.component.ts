@@ -9,10 +9,16 @@ import { Film } from '../models/Film';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
+  validazioneLogin: boolean;
+  username: string;
+  password: string;
 
   lastFilms: Film[];
   bestFilms: Film[];
+
+
   
+
   constructor(
     public userService: UserService,
     private filmService: FilmService) { }
@@ -21,8 +27,11 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
     this.userService.getLoggedUser();
     this.lastFilms = this.filmService.getLastFilms();
-    this.bestFilms = this.filmService.getBestFilms(); 
+    this.bestFilms = this.filmService.getBestFilms();
 
+  }
+  login() {
+    this.validazioneLogin = this.userService.login(this.username, this.password);
   }
 
 }

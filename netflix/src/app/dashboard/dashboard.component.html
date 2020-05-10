@@ -11,15 +11,6 @@
             <a routerLink="/films">Movies</a>
             <a routerLink="/actors">Actors</a>
             <a routerLink="/genres">Generi</a>
-            <!--<span *!ngIf="userService.loggedUser">
-                <button (click)="userService.login()">Login <i class="fas fa-bell sub-nav-logo"></i></button>
-            </span>
-            <span *ngIf="userService.loggedUser">
-                Welcome back bithciiiis {{ userService.loggedUser.firstname }}
-                <button (click)="userService.logout()">Logout Netflix</button>
-            </span>-->
-            <!--non si vede, sistemare-->
-
         </nav>
         <nav class="sub-nav">
             <a href="#"><i class="fas fa-search sub-nav-logo"></i></a>
@@ -58,44 +49,66 @@
         </div>
     </section>
     <!-- END OF MAIN CONTAINER -->
-    <!--SISTEMARE USERS-->
 
+    <!--USERS-->
 
-    <!-- <div *!ngIf="userService.loggedUser">
-        <button (click)="userService.login()">Netflix Login</button>
+    <div class="container">
+        <div class=" marginR row">
+            <div class="col-md-auto">
+                <div *ngIf="!userService.loggedUser">
+                    <i class="fas fa-user"></i>
+                    <input class="input" type="text" [(ngModel)]="username">
+                    <i class="fas fa-lock margin-left"></i>
+                    <input class="input" type="text" [(ngModel)]="password">
+                    <div *ngIf="validazioneLogin === false">Ops! Riprova</div>
+                    <div class="  margin-top row">
+                        <div class="col-md-auto">
+                            <button type="button" class="button" (click)="login()">Login</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!--USER LOGGATO-->
+            <div class="col-md-auto">
+                <div *ngIf="userService.loggedUser">
+                    Benvenuto sulla tua pagina Netflix: {{ userService.loggedUser.firstname }} {{ userService.loggedUser.lastname }}!
+                    <div class=" margin-top row">
+                        <div class="col-md-auto">
+                            <button class="button" type="button" (click)="userService.logout()">Logout</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--USER LOGGATO-->
+        </div>
     </div>
-    <div *ngIf="userService.loggedUser">
-        <span>
-            Welcome back bithciiiis
-            {{ userService.loggedUser.firstname }}
-            <button (click)="userService.logout()">Logout Netflix</button>
-        </span>
-    </div>-->
-
-    <!-- LINKS -->
-    <section class="link">
-        <div class="logos">
-            <a href="#"><i class="fab fa-facebook-square fa-2x logo"></i></a>
-            <a href="#"><i class="fab fa-instagram fa-2x logo"></i></a>
-            <a href="#"><i class="fab fa-twitter fa-2x logo"></i></a>
-            <a href="#"><i class="fab fa-youtube fa-2x logo"></i></a>
-        </div>
-        <div class="sub-links">
-            <ul>
-                <li><a href="#">Audio and Subtitles</a></li>
-                <li><a href="#">Audio Description</a></li>
-                <li><a href="#">Help Center</a></li>
-                <li><a href="#">Gift Cards</a></li>
-                <li><a href="#">Media Center</a></li>
-                <li><a href="#">Investor Relations</a></li>
-                <li><a href="#">Jobs</a></li>
-                <li><a href="#">Terms of Use</a></li>
-                <li><a href="#">Privacy</a></li>
-                <li><a href="#">Legal Notices</a></li>
-                <li><a href="#">Corporate Information</a></li>
-                <li><a href="#">Contact Us</a></li>
-            </ul>
-        </div>
-    </section>
-
+    <!--USERS-->
+    <!--CONTINUARE USERS-->
 </div>
+
+<!-- LINKS -->
+<section class="link">
+    <div class="logos">
+        <a href="#"><i class="fab fa-facebook-square fa-2x logo"></i></a>
+        <a href="#"><i class="fab fa-instagram fa-2x logo"></i></a>
+        <a href="#"><i class="fab fa-twitter fa-2x logo"></i></a>
+        <a href="#"><i class="fab fa-youtube fa-2x logo"></i></a>
+    </div>
+    <div class="sub-links">
+        <ul>
+            <li><a href="#">Audio and Subtitles</a></li>
+            <li><a href="#">Audio Description</a></li>
+            <li><a href="#">Help Center</a></li>
+            <li><a href="#">Gift Cards</a></li>
+            <li><a href="#">Media Center</a></li>
+            <li><a href="#">Investor Relations</a></li>
+            <li><a href="#">Jobs</a></li>
+            <li><a href="#">Terms of Use</a></li>
+            <li><a href="#">Privacy</a></li>
+            <li><a href="#">Legal Notices</a></li>
+            <li><a href="#">Corporate Information</a></li>
+            <li><a href="#">Contact Us</a></li>
+        </ul>
+    </div>
+</section>

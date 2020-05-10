@@ -1,3 +1,5 @@
+/*navbar*/
+
 .main-nav {
     grid-area: mn;
     padding: 0 30px 0 20px;
@@ -14,7 +16,10 @@
 }
 
 
-/*LOGO*/
+/*navbar*/
+
+
+/*logo magico di github*/
 
 .containerz {
     margin: 0;
@@ -110,11 +115,11 @@ h3 {
     overflow: hidden;
 }
 
-.radius {
-    color: white;
-    font-family: Arial, Helvetica, sans-serif;
-    background-color: black;
-}
+
+/*logo magico di github*/
+
+
+/*margini e radius*/
 
 .margin_left {
     margin-left: 10px;
@@ -125,9 +130,66 @@ h3 {
 }
 
 .margin_top {
-    margin-top: 50%;
+    margin-top: 90px;
 }
 
 .margin-top {
+    margin-top: 50%;
+}
+
+.margin-logo {
     margin-top: 20%;
+}
+
+
+/*margini e radius*/
+
+
+/*form*/
+
+input {
+    outline: 0 !important;
+    border-width: 0 0 1px 0 !important;
+    border-color: #eee !important;
+    margin: 0 auto;
+}
+
+input,
+button,
+select {
+    padding: 10px 3%;
+    background: transparent;
+    font-size: 15px;
+    width: 300px;
+    height: 25px;
+    font-family: Arial, Helvetica, sans-serif;
+    border: 1px solid #eee;
+    position: relative;
+    color: #eee;
+    margin-bottom: 15px;
+}
+
+::-webkit-input-placeholder {
+    color: #ddd !important;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+}
+
+.button {
+    width: 225px;
+    height: 40px;
+    margin-top: 10px;
+    background: transparent;
+    text-align: center;
+    cursor: pointer;
+    color: #eee;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: all 1s ease;
+}
+
+.button:hover {
+    background: #D50000;
+    border: none;
+    transition: all 1.5s ease;
 }

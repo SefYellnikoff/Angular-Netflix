@@ -17,7 +17,7 @@ const FILMS: Film[] = [
         id: 1,
         firstname: 'Frances',
         lastname: 'McDormand',
-        imgActor:''
+        imgActor: ''
       }
     ],
     genres: [
@@ -27,7 +27,7 @@ const FILMS: Film[] = [
       }
     ],
     tags: 'film top, mamme cazzute',
-    coverUrl:'https://pad.mymovies.it/filmclub/2017/03/125/locandina.jpg'
+    coverUrl: 'https://pad.mymovies.it/filmclub/2017/03/125/locandina.jpg'
   },
 
   {
@@ -43,7 +43,7 @@ const FILMS: Film[] = [
         id: 6,
         firstname: 'George',
         lastname: 'Clooney',
-        imgActor:'https://pbs.twimg.com/profile_images/704366711739387904/dBlzfG_S.jpg'
+        imgActor: 'https://pbs.twimg.com/profile_images/704366711739387904/dBlzfG_S.jpg'
       }
     ],
     genres: [
@@ -68,7 +68,7 @@ const FILMS: Film[] = [
         id: 6,
         firstname: 'Llewellyn Moss',
         lastname: 'Moss',
-        imgActor:''
+        imgActor: ''
       }
     ],
     genres: [
@@ -93,7 +93,7 @@ const FILMS: Film[] = [
         id: 6,
         firstname: 'Kevin',
         lastname: 'Spacey',
-        imgActor:''
+        imgActor: ''
       }
     ],
     genres: [
@@ -105,7 +105,7 @@ const FILMS: Film[] = [
     tags: 'hollywood, Spacey',
     coverUrl: 'https://cdn.gelestatic.it/kataweb/tvzap/2018/02/taglioAlta_001101.jpg'
   },
-   {
+  {
     id: 4,
     title: 'Seven ',
     description: 'Durante una L agente speciale Dave Kujan investiga sulla causa dell incendio di una barca nel porto di San Pedro, Los Angeles, che ha provocato la morte di 27 persone. La sua unica fonte di informazioni è Roger Kint, un criminale sopravvissuto allincidente. di caccia in solitaria, un saldatore del Texas trova e si impossessa di una somma di denaro precedentemente rubata. Luomo diventa così preda di una banda di criminali. Un misterioso uomo delle legge dà la caccia a tre detenuti evasi che viaggiano attraverso gli Stati Uniti alla ricerca della refurtiva di un vecchio colpo. di una ragazza assassinata scrive un controverso messaggio su alcuni cartelloni pubblicitari aprendo una contesa che vede coinvolti lo stimato capo della polizia e un pericoloso poliziotto.',
@@ -118,7 +118,7 @@ const FILMS: Film[] = [
         id: 6,
         firstname: 'Kevin',
         lastname: 'Spacey',
-        imgActor:''
+        imgActor: ''
       }
     ],
     genres: [
@@ -148,9 +148,10 @@ export class FilmService {
     cast: [],
     genres: [],
     tags: '',
-    coverUrl:''
+    coverUrl: ''
   };
-
+  constructor(private localStorage: LocalStorageService) { }
+  
   getFilms(): Film[] {
     this.films = this.localStorage.retrieve('films') || FILMS;
     return this.films;
@@ -173,7 +174,7 @@ export class FilmService {
       cast: [],
       genres: [],
       tags: '',
-      coverUrl:''
+      coverUrl: ''
     }
   }
 
@@ -204,5 +205,5 @@ export class FilmService {
     }).slice(0, 3);
   }
 
-  constructor(private localStorage: LocalStorageService) { }
+
 }

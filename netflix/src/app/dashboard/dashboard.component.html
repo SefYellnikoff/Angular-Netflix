@@ -13,7 +13,7 @@
             <a routerLink="/genres">Generi</a>
         </nav>
         <nav class="sub-nav">
-            <a href="#"><i class="fas fa-search sub-nav-logo"></i></a>
+            <a routerLink="/films"><i class="fas fa-search sub-nav-logo"></i></a>
             <a href="#"><i class="fas fa-bell sub-nav-logo"></i></a>
             <a href="#">Netflix</a>
         </nav>
@@ -26,24 +26,29 @@
             <h1 id="home">Ultimi 4 films su Netflix:</h1>
             <div class="box">
                 <div class="a" *ngFor="let film of lastFilms">
+
                     <img [src]="film.coverUrl">
                     <!-- <h4>{{ film.title }}</h4>
                     <h4>{{ film.releaseYear }}</h4>-->
+                    <div *ngIf="userService.loggedUser">
+                        <button [ngClass]="{'btn red noborder':film.active, 'btn white noborder':!film.active}" (click)="userService.addFavorite(loggedUserL,film)" (click)="movieC(film)"> &#9829;</button>
+                    </div>
+
                 </div>
             </div>
-        </div>
-
-
-        <h1 id="myList">Ultimi 3 films su Netflix:</h1>
-        <div class="box">
-            <div class="a" *ngFor="let film of bestFilms">
-                <img class="img" [src]="film.coverUrl">
-                <div>
-                    <span>{{ film.title }}</span>
-                </div>
-                <div>
-                    stars:
-                    <span>{{ film.stars }}</span>
+            <h1 id="myList">Ultimi 3 films su Netflix:</h1>
+            <div class="box">
+                <div class="a" *ngFor="let film of bestFilms">
+                    <img class="img" [src]="film.coverUrl">
+                    <div>
+                        <span>{{ film.title }}</span>
+                    </div>
+                    <div *ngIf="userService.loggedUser">
+                        <app-stars (voteChanged)="setVote(film, $event)" [vote]="film.stars"></app-stars>
+                        <div>
+                            <button [ngClass]="{'btn red noborder':film.active, 'btn white noborder':!film.active}" (click)="userService.addFavorite(loggedUserL,film)" (click)="movieC(film)"> &#9829;</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -56,14 +61,18 @@
         <div class=" marginR row">
             <div class="col-md-auto">
                 <div *ngIf="!userService.loggedUser">
-                    <i class="fas fa-user"></i>
-                    <input class="input" type="text" [(ngModel)]="username">
-                    <i class="fas fa-lock margin-left"></i>
-                    <input class="input" type="text" [(ngModel)]="password">
+                    <div>
+                        <i class="fas fa-user"></i>
+                        <input class="input" type="text" [(ngModel)]="username">
+                    </div>
+                    <div>
+                        <i class="fas fa-lock"></i>
+                        <input class="input" type="password" [(ngModel)]="password">
+                    </div>
                     <div *ngIf="validazioneLogin === false">Ops! Riprova</div>
-                    <div class="  margin-top row">
+                    <div class="margin-top row">
                         <div class="col-md-auto">
-                            <button type="button" class="button" (click)="login()">Login</button>
+                            <button type="button" class="buttonLogin" (click)="login()">Login</button>
                         </div>
                     </div>
 
@@ -72,10 +81,10 @@
             <!--USER LOGGATO-->
             <div class="col-md-auto">
                 <div *ngIf="userService.loggedUser">
-                    Benvenuto sulla tua pagina Netflix: {{ userService.loggedUser.firstname }} {{ userService.loggedUser.lastname }}!
+                    <span>Benvenuto sulla tua pagina Netflix: {{ userService.loggedUser.firstname }} {{ userService.loggedUser.lastname }}!</span>
                     <div class=" margin-top row">
                         <div class="col-md-auto">
-                            <button class="button" type="button" (click)="userService.logout()">Logout</button>
+                            <button class="buttonLogin" type="button" (click)="userService.logout()">Logout</button>
                         </div>
                     </div>
                 </div>

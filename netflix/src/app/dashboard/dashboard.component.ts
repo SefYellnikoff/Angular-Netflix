@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../services/user.service';
 import { FilmService } from '../services/film.service';
 import { Film } from '../models/Film';
+import { User } from '../models/User';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,15 +10,16 @@ import { Film } from '../models/Film';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
+
+
   validazioneLogin: boolean;
   username: string;
   password: string;
 
   lastFilms: Film[];
   bestFilms: Film[];
-
-
-  
+  loggedUserL: User;
+  film: Film;
 
   constructor(
     public userService: UserService,
@@ -30,8 +32,16 @@ export class DashboardComponent implements OnInit {
     this.bestFilms = this.filmService.getBestFilms();
 
   }
+  movieC(film) {
+    film.active = !film.active
+
+  }
   login() {
     this.validazioneLogin = this.userService.login(this.username, this.password);
   }
+  setVote(film: Film, vote: number) {
+    film.stars = vote;
+  }
 
 }
+

@@ -12,11 +12,14 @@ import { EditActorComponent } from './edit-actor/edit-actor.component';
 import { EditFilmComponent } from './edit-film/edit-film.component';
 import { EditGenreComponent } from './edit-genre/edit-genre.component';
 import { FilmsComponent } from './films/films.component';
+import { HttpClientModule }    from '@angular/common/http';
 import { GenresComponent } from './genres/genres.component';
 import { FilmService } from './services/film.service';
 import { NgxWebstorageModule } from 'ngx-webstorage';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { SearchFilmPipe } from './pipes/search-film.pipe';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { StarsComponent } from './stars/stars.component';
 
 
 @NgModule({
@@ -32,14 +35,17 @@ import { SearchFilmPipe } from './pipes/search-film.pipe';
     EditGenreComponent,
     FilmsComponent,
     GenresComponent,
-    SearchFilmPipe
+    SearchFilmPipe,
+    StarsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgxWebstorageModule.forRoot(),
     FormsModule,
-    Ng2SearchPipeModule
+    Ng2SearchPipeModule,
+    FontAwesomeModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -25,10 +25,14 @@
                 <div class="row ">
                     <div class="col-12 ">
                         <div> {{ a.title }}</div>
-                        <div>Voto del pubblico: {{ a.stars }}</div>
+                        <div>Voto del pubblico: {{ a.stars }}
+                            <app-stars (voteChanged)="setVote(a, $event)" [vote]="a.stars"></app-stars>
+                        </div>
+
+
                         <div>Durata del film: {{ a.duration }}</div>
                         <div class="row ">
-                            <div class="col-12 " *ngIf="a.showMore ">
+                            <div class="col-12" *ngIf="a.showMore ">
                                 <!--<div>Attori: {{ getCastList(a.cast) }}</div>-->
                                 <div> Anno: {{ a.releaseYear }}</div>
                                 <div>Genere: {{ getGenreList(a.genres) }}</div>

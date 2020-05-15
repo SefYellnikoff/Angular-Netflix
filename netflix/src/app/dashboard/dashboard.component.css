@@ -285,7 +285,7 @@ button {
     font-size: 16px;
 }
 
-.button {
+.buttonLogin {
     width: 225px;
     height: 40px;
     margin-top: 10px;
@@ -298,7 +298,7 @@ button {
     transition: all 1s ease;
 }
 
-.button:hover {
+.buttonLogin:hover {
     background: #D50000;
     border: none;
     transition: all 1.5s ease;
@@ -311,4 +311,24 @@ button {
 .marginR {
     margin-top: 20%;
     margin-bottom: 20%;
+}
+
+.noborder {
+    border: black !important;
+    width: 1px !important;
+    text-align: center !important;
+}
+
+.red {
+    color: red;
+    border: black !important;
+    width: 0px !important;
+    text-align: center !important;
+    height: 3px !important;
+}
+
+.white {
+    color: white !important;
+    border: black !important;
+    width: 0px !important;
 }

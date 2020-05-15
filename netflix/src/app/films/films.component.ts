@@ -5,13 +5,14 @@ import { Actor } from '../models/Actor';
 import { Genre } from '../models/Genre';
 import { ActorService } from '../services/actor.service';
 
+
 @Component({
   selector: 'app-films',
   templateUrl: './films.component.html',
   styleUrls: ['./films.component.css']
 })
 export class FilmsComponent implements OnInit {
-
+ 
   titleFilm = 'Sono il film component';
   films: Film[];
   actors: Actor[];
@@ -37,5 +38,7 @@ export class FilmsComponent implements OnInit {
     event.stopPropagation();
     this.filmService.selectedFilm = film;
   }
-
+  setVote(film: Film, vote:number){
+    film.stars= vote;
+  }
 }

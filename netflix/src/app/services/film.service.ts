@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Film } from '../models/Film';
 import { from, Observable, of } from 'rxjs';
+import { tap } from 'rxjs/operators';
 import { LocalStorageService, SessionStorageService } from 'ngx-webstorage';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { UserService } from './user.service';
 
 const FILMS: Film[] = [
   {
@@ -17,7 +20,7 @@ const FILMS: Film[] = [
         id: 1,
         firstname: 'Frances',
         lastname: 'McDormand',
-        imgActor: ''
+        
       }
     ],
     genres: [
@@ -43,7 +46,7 @@ const FILMS: Film[] = [
         id: 6,
         firstname: 'George',
         lastname: 'Clooney',
-        imgActor: 'https://pbs.twimg.com/profile_images/704366711739387904/dBlzfG_S.jpg'
+       
       }
     ],
     genres: [
@@ -68,7 +71,7 @@ const FILMS: Film[] = [
         id: 6,
         firstname: 'Llewellyn Moss',
         lastname: 'Moss',
-        imgActor: ''
+        
       }
     ],
     genres: [
@@ -93,7 +96,7 @@ const FILMS: Film[] = [
         id: 6,
         firstname: 'Kevin',
         lastname: 'Spacey',
-        imgActor: ''
+        
       }
     ],
     genres: [
@@ -118,7 +121,7 @@ const FILMS: Film[] = [
         id: 6,
         firstname: 'Kevin',
         lastname: 'Spacey',
-        imgActor: ''
+        
       }
     ],
     genres: [
@@ -150,25 +153,39 @@ export class FilmService {
     tags: '',
     coverUrl: ''
   };
-  constructor(private localStorage: LocalStorageService) { }
-  
-  getFilms(): Film[] {
-    this.films = this.localStorage.retrieve('films') || FILMS;
-    return this.films;
+  constructor(private localStorage: LocalStorageService, private http: HttpClient, private userService: UserService) { }
+
+  getFilms(): Observable<Film[]> {
+    //this.films = this.localStorage.retrieve('films') || FILMS;
+    //return this.films;
+    return this.http.get<Film[]>('http://netflix.cristiancarrino.com/film/read.php').pipe(
+      tap(response => console.log(response))
+    );//
   }
 
-  addFilm(): void {
-    if (!this.films) {
-      this.getFilms();
-    }
 
-    this.films.push(this.newFilm);
-    this.localStorage.store('films', this.films);
+
+  addFilm(): void {
+    let loggedUser = this.userService.getLoggedUser();
+
+    let httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': loggedUser.token
+      })
+    };
+
+    this.http.post<Film>('http://netflix.cristiancarrino.com/film/create.php', this.newFilm, httpOptions).subscribe(response => {
+      console.log(response);
+      this.getFilms().subscribe(response => this.films = response)
+    });
+
+
     this.newFilm = {
-      title: '',
-      description: '',
-      director: '',
-      duration: '',
+      title: "",
+      description: "",
+      director: "",
+      duration: "",
       releaseYear: 0,
       stars: 0,
       cast: [],
@@ -178,25 +195,19 @@ export class FilmService {
     }
   }
 
+
+
   editFilm(): void {
     this.localStorage.store('films', this.films);
     this.selectedFilm = null;
   }
 
-  getLastFilms(): Film[] {
-    if (!this.films) {
-      this.getFilms();
-    }
-
-    return this.films.slice(-4);
+  getLastFilms(films: Film[]): Film[] {
+    return films.slice(-4);
   }
 
-  getBestFilms(): Film[] {
-    if (!this.films) {
-      this.getFilms();
-    }
-
-    return this.films.sort((film1, film2) => {
+  getBestFilms(films: Film[]): Film[] {
+    return films.sort((film1, film2) => {
       if (film1.stars > film2.stars) {
         return -1;
       }
@@ -205,5 +216,21 @@ export class FilmService {
     }).slice(0, 3);
   }
 
+  removeFilm(id: number) {
+    let loggedUser = this.userService.getLoggedUser();
 
+    let httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': loggedUser.token
+      })
+    };
+    console.log({ id: id });
+
+    this.http.post<Film>('http://netflix.cristiancarrino.com/film/delete.php', this.newFilm, httpOptions).subscribe(response => {
+      console.log(response);
+      this.getFilms().subscribe(response => this.films = response)
+    });
+
+  }
 }

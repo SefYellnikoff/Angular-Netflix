@@ -26,22 +26,25 @@ export class DashboardComponent implements OnInit {
     private filmService: FilmService) { }
 
 
-  ngOnInit() {
-    this.userService.getLoggedUser();
-    this.lastFilms = this.filmService.getLastFilms();
-    this.bestFilms = this.filmService.getBestFilms();
+    ngOnInit() {
+      this.userService.getLoggedUser();
 
-  }
-  movieC(film) {
-    film.active = !film.active
+      this.filmService.getFilms().subscribe(response => {
+        this.lastFilms = this.filmService.getLastFilms(response);
+        this.bestFilms = this.filmService.getBestFilms(response);
+      });
+    }
 
-  }
-  login() {
-    this.validazioneLogin = this.userService.login(this.username, this.password);
-  }
-  setVote(film: Film, vote: number) {
-    film.stars = vote;
-  }
+    movieC(film) {
+      film.active = !film.active
+
+    }
+    login() {
+      this.validazioneLogin = this.userService.login(this.username, this.password);
+    }
+    setVote(film: Film, vote: number) {
+      film.stars = vote;
+    }
 
 }
 

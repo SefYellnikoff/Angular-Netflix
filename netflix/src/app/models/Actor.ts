@@ -1,6 +1,9 @@
-export interface Actor{
+import { Film } from './Film';
+
+export interface Actor {
     id?: number;
     firstname: string;
     lastname: string;
-    imgActor: string;
+    selected?: boolean;
+    films?: Film[];
 }

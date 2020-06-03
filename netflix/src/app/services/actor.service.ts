@@ -8,19 +8,19 @@ const ACTORS: Actor[] = [
     id: 23,
     firstname: 'George',
     lastname: 'Clooney',
-    imgActor: 'https://pbs.twimg.com/profile_images/704366711739387904/dBlzfG_S.jpg'
+    
   },
   {
     id: 33,
     firstname: 'Jim',
     lastname: 'Carry',
-    imgActor: ''
+    
   },
   {
     id: 63,
     firstname: 'Quentin',
     lastname: 'Tarantino',
-    imgActor: ''
+    
   },
 ]
 
@@ -33,7 +33,7 @@ export class ActorService {
   newActor: Actor = {
     firstname: '',
     lastname: '',
-    imgActor: ''
+    
   };
   constructor(private localStorage: LocalStorageService) { }
   
@@ -49,7 +49,7 @@ export class ActorService {
     this.newActor = {
       firstname: '',
       lastname: '',
-      imgActor: ''
+    
     };
   }
 

@@ -12,7 +12,7 @@ import { ActorService } from '../services/actor.service';
   styleUrls: ['./films.component.css']
 })
 export class FilmsComponent implements OnInit {
- 
+
   titleFilm = 'Sono il film component';
   films: Film[];
   actors: Actor[];
@@ -22,7 +22,8 @@ export class FilmsComponent implements OnInit {
   constructor(private filmService: FilmService) { }
 
   ngOnInit() {
-    this.films = this.filmService.getFilms();
+    this.filmService.getFilms().subscribe(response => { this.films = response; 
+    });
   }
 
   getCastList(cast: Actor[]): string {
@@ -38,7 +39,7 @@ export class FilmsComponent implements OnInit {
     event.stopPropagation();
     this.filmService.selectedFilm = film;
   }
-  setVote(film: Film, vote:number){
-    film.stars= vote;
+  setVote(film: Film, vote: number) {
+    film.stars = vote;
   }
 }

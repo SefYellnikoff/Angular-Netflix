@@ -39,7 +39,9 @@
                                 <div>Tags: {{ a.tags }}</div>
                                 <div>Attori: {{ getCastList(a.cast) }}</div>
                                 <div>
-                                    <button type="button" class="button" (click)="selectThisFilm(a)" routerLink="/films/edit">Modifica</button>
+                                    <button type="button" class="button" (click)="selectThisFilm(a)" routerLink="/films/edit/{{ a.id }}">Modifica</button>
+                                    <!--<button type="button" class="button" (click)="">Rimuovi</button>-->
+
                                 </div>
                                 <div class="row ">
                                     <div class="col-12 ">

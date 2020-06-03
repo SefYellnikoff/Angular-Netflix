@@ -2,7 +2,7 @@ import { Injectable, ViewChild, ElementRef } from '@angular/core';
 import { User } from '../models/User';
 import { LocalStorageService } from 'ngx-webstorage';
 import { Film } from '../models/Film';
-import { FilmService } from './film.service';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 
 const USERS: User[] = [
@@ -12,7 +12,8 @@ const USERS: User[] = [
     password: 'netflix',
     firstname: 'Sefora',
     lastname: 'Mag',
-    favoritesFilm: []
+    favoritesFilm: [],
+    token: ''
   },
   {
     id: 2,
@@ -20,7 +21,8 @@ const USERS: User[] = [
     password: 'methflix',
     firstname: 'Walter',
     lastname: 'White',
-    favoritesFilm: []
+    favoritesFilm: [],
+    token:''
   },
 ];
 
@@ -35,22 +37,29 @@ export class UserService {
   userl: User;
   color: boolean;
 
-  constructor(private localStorage: LocalStorageService, private filmService: FilmService) { }
+  constructor(private localStorage: LocalStorageService,private http: HttpClient) { }
 
 
   logout() {
     this.loggedUser = null;
-    this.localStorage.clear('user');
+    this.localStorage.clear('loggedUser');
   }
 
   getLoggedUser() {
-    this.loggedUser = this.localStorage.retrieve('user');
+    this.loggedUser = this.localStorage.retrieve('loggedUser');
+    return this.loggedUser;
   }
 
   login(username: string, password: string): boolean {
-    this.loggedUser = USERS.find(x => x.username == username && x.password == password);
-    this.localStorage.store('loggedUser', this.loggedUser);
-    return this.loggedUser != null;
+    this.http.post<User>('http://netflix.cristiancarrino.com/user/login.php',{
+      'username': username,
+      'password': password
+    }).subscribe(response =>{console.log(response);
+      this.loggedUser=response;
+   this.localStorage.store('loggedUser',this.loggedUser);
+    });
+   
+    return this.loggedUser !=null;
 
   }
 
